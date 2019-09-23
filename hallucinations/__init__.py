@@ -6,7 +6,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-__version__ = '0.1.3'
+__version__ = '0.1.4'
 home = str(Path.home())
 
 
@@ -43,9 +43,10 @@ def generate_site(img):
 
 
 def main():
+    img_path = home + '/mandelbrot.png'
     m = mandelbrot(1024, 500)
-    plt.imsave('mandelbrot.png', np.log(m), cmap='magma')
-    site = generate_site('mandelbrot.png')
+    plt.imsave(img_path, np.log(m), cmap='magma')
+    site = generate_site(img_path)
     webbrowser.open(site, new=2, autoraise=True)
     print("A web browser should open soon.")
     print("If the browser does not open, you can copy and paste the following on your browser:")
