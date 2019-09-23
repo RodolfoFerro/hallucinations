@@ -6,7 +6,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-__version__ = '0.1.1'
+__version__ = '0.1.2'
+abs_path = os.path.abspath(os.sep)
 
 
 @jit
@@ -34,21 +35,19 @@ def generate_site(img):
     </center>
     """.format(img)
 
-    with open('factal.html', 'wt') as html_output:
+    with open(abs_path + 'fractal.html', 'wt') as html_output:
         html_output.write(html)
-    return 'factal.html'
+    return abs_path + 'fractal.html'
 
 
 def main():
     m = mandelbrot(1024, 500)
     plt.imsave('mandelbrot.png', np.log(m), cmap='magma')
     site = generate_site('mandelbrot.png')
-    path = os.path.realpath(__file__).split('/')[:-1]
-    path = '/'.join(path) + '/' + site
-    webbrowser.open(path, new=2, autoraise=True)
+    webbrowser.open(site, new=2, autoraise=True)
     print("A web browser should open soon.")
     print("If the browser does not open, you can copy and paste the following on your browser:")
-    print("{}".format(path))
+    print("{}".format(site))
 
 
 main()
