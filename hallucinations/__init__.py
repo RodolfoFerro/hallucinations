@@ -1,13 +1,13 @@
 import webbrowser
-import os
+from pathlib import Path
 
 from numba import jit
 import numpy as np
 import matplotlib.pyplot as plt
 
 
-__version__ = '0.1.2'
-abs_path = os.path.abspath(os.sep)
+__version__ = '0.1.3'
+home = str(Path.home())
 
 
 @jit
@@ -28,6 +28,8 @@ def mandelbrot(size, iterations):
 
 
 def generate_site(img):
+    html_file = home + '/fractal.html'
+
     html = """
     <center>
         <h1 style="font-family: Verdana;">Do not do drugs!</h1>
@@ -35,9 +37,9 @@ def generate_site(img):
     </center>
     """.format(img)
 
-    with open(abs_path + 'fractal.html', 'wt') as html_output:
+    with open(html_file, 'wt') as html_output:
         html_output.write(html)
-    return abs_path + 'fractal.html'
+    return html_file
 
 
 def main():
